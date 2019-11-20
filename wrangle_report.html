@@ -13221,7 +13221,7 @@ Maybe yo can do that using additional requests with POST or some other commands 
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='quality'></a></p>
-<h3 id="Quality-Issues">Quality Issues<a class="anchor-link" href="#Quality-Issues">&#182;</a></h3><h5 id="df_twitter_archive_enhanced-table:"><code>df_twitter_archive_enhanced</code> table:<a class="anchor-link" href="#df_twitter_archive_enhanced-table:">&#182;</a></h5><ul>
+<h4 id="Quality">Quality<a class="anchor-link" href="#Quality">&#182;</a></h4><h5 id="df_twitter_archive_enhanced-table:"><code>df_twitter_archive_enhanced</code> table:<a class="anchor-link" href="#df_twitter_archive_enhanced-table:">&#182;</a></h5><ul>
 <li>Some tweets are not available now. </li>
 <li>The type of the columns <code>tweet_id</code>, <code>in_reply_to_status_id</code>, <code>in_reply_to_user_id</code>, <code>retweeted_status_id</code>, <code>retweeted_status_user_id</code> should be string.</li>
 <li>We are not intereste in the first par of the text (RT @XXXX:) when the tweet is a retweet. I already have this information in other columns.</li>
@@ -13229,14 +13229,18 @@ Maybe yo can do that using additional requests with POST or some other commands 
 <li>And many rows have a numerator not very realistic.</li>
 <li>The name of the dogs <code>a</code>, <code>O</code>, <code>by</code>, <code>an</code>, <code>the</code>, <code>his</code>, <code>all</code>and <code>my</code> are incorrect. (We are not going to correct this by the moment. We do not need them)</li>
 <li>There are not many dogs classified as doggo, floofer, etc. And 14 of them have double clasification.</li>
+<li>We would like to know the number of replies to each tweet.</li>
 </ul>
 <h5 id="df_image_predictions-table:"><code>df_image_predictions</code> table:<a class="anchor-link" href="#df_image_predictions-table:">&#182;</a></h5><ul>
 <li>The type of the column <code>tweet_id</code> should be string.</li>
 </ul>
 <h5 id="df_tweepy_extractions-table:"><code>df_tweepy_extractions</code> table:<a class="anchor-link" href="#df_tweepy_extractions-table:">&#182;</a></h5><ul>
+<li>The column <code>retweet_count_retweet</code> has no sense because it has the same value as <code>retweet_count</code>.</li>
+<li>we don't need the columns <code>entities_name</code>, <code>entities_screen_name</code>, <code>entities_type</code>, <code>mentions_name</code> and <code>mentions_screen_name</code> because we are going to use only the ids, so we can drop them by now.</li>
 <li>Nulls represented as void strings in <code>entities_name</code>, <code>entities_screen_name</code>, <code>entities_type</code>, <code>entities_user_id</code>,    <code>entions_name</code>, <code>mentions_screen_name</code>, <code>mentions_user_id</code>, <code>quoted_status_id</code>, <code>quoted_status_id_rwetweet</code> and <code>retweet_count_retweet</code>.</li>
 </ul>
 <h5 id="df_scrapped_replies-table:"><code>df_scrapped_replies</code> table:<a class="anchor-link" href="#df_scrapped_replies-table:">&#182;</a></h5><ul>
+<li>we don't need the columns <code>user_name</code> and <code>full_name</code> because we are goin to user only the id.</li>
 <li>The type of the columns <code>favs</code>, <code>replies</code> and <code>retweets</code> should be integer instead of float.</li>
 <li>The type of the columns <code>user_id</code> and <code>reply_id</code> should be a string.</li>
 <li><code>language</code> type should be categorical.</li>
@@ -13249,20 +13253,16 @@ Maybe yo can do that using additional requests with POST or some other commands 
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='tidiness'></a></p>
-<h3 id="Tidiness-Issues">Tidiness Issues<a class="anchor-link" href="#Tidiness-Issues">&#182;</a></h3><h5 id="df_twitter_archive_enhanced-table:"><code>df_twitter_archive_enhanced</code> table:<a class="anchor-link" href="#df_twitter_archive_enhanced-table:">&#182;</a></h5><ul>
+<h4 id="Tidiness">Tidiness<a class="anchor-link" href="#Tidiness">&#182;</a></h4><h5 id="df_twitter_archive_enhanced-table:"><code>df_twitter_archive_enhanced</code> table:<a class="anchor-link" href="#df_twitter_archive_enhanced-table:">&#182;</a></h5><ul>
 <li>Columns <code>doggo</code>, <code>floofer</code>, <code>pupper</code> and <code>puppo</code> should be a unique column called dog_type.</li>
-<li>This new column should be categorical.</li>
-<li>We would like to know the number of replies to each tweet.</li>
 </ul>
-<h5 id="df_image_predictions-table:"><code>df_image_predictions</code> table:<a class="anchor-link" href="#df_image_predictions-table:">&#182;</a></h5><h5 id="df_tweepy_extractions-table:"><code>df_tweepy_extractions</code> table:<a class="anchor-link" href="#df_tweepy_extractions-table:">&#182;</a></h5><ul>
-<li>The column <code>retweet_count_retweet</code> has no sense because it has the same value as <code>retweet_count</code>.</li>
-<li>we don't need the columns <code>entities_name</code>, <code>entities_screen_name</code>, <code>entities_type</code>, <code>mentions_name</code> and <code>mentions_screen_name</code> because we are going to use only the ids, so we can drop them by now.</li>
+<h5 id="df_image_predictions-table:"><code>df_image_predictions</code> table:<a class="anchor-link" href="#df_image_predictions-table:">&#182;</a></h5><ul>
 <li>this dataframe should be integrated in df_twitter_archive_enhanced.</li>
 </ul>
-<h5 id="df_scrapped_replies-table:"><code>df_scrapped_replies</code> table:<a class="anchor-link" href="#df_scrapped_replies-table:">&#182;</a></h5><ul>
-<li>we don't need the columns <code>user_name</code> and <code>full_name</code> because we are goin to user only the id.</li>
+<h5 id="df_tweepy_extractions-table:"><code>df_tweepy_extractions</code> table:<a class="anchor-link" href="#df_tweepy_extractions-table:">&#182;</a></h5><ul>
+<li>this dataframe should be integrated in df_twitter_archive_enhanced.</li>
 </ul>
-<h5 id="df_twitter_archive_enhanced-and-df_scrapped_replies"><code>df_twitter_archive_enhanced</code> and <code>df_scrapped_replies</code><a class="anchor-link" href="#df_twitter_archive_enhanced-and-df_scrapped_replies">&#182;</a></h5><ul>
+<h5 id="df_scrapped_replies-table:"><code>df_scrapped_replies</code> table:<a class="anchor-link" href="#df_scrapped_replies-table:">&#182;</a></h5><h5 id="df_twitter_archive_enhanced-and-df_scrapped_replies"><code>df_twitter_archive_enhanced</code> and <code>df_scrapped_replies</code><a class="anchor-link" href="#df_twitter_archive_enhanced-and-df_scrapped_replies">&#182;</a></h5><ul>
 <li>We want mentions, replies, retweets, quoted, etc grouped apart as a different kind of information. We can drop this columns in the original dataframes. We will do this at the end of the clean work.</li>
 </ul>
 
@@ -13342,24 +13342,6 @@ Maybe yo can do that using additional requests with POST or some other commands 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a id='clean_tidiness'></a></p>
-<h3 id="Tidiness">Tidiness<a class="anchor-link" href="#Tidiness">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>In <code>df_twitter_archive_enhanced_copy</code> I have changed the columns <code>doggo</code>, <code>floofer</code>, <code>pupper</code> and <code>puppo</code> by a sigle categorical column called <code>dog_type</code> with four values.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>I was not able to extract the number of replies for each tweet using the API, so I have added a new column to <code>df_twitter_archive_enhanced_copy</code> counting the replies estoured in <code>df_scrapped_replies_copy</code></li>
 </ul>
@@ -13370,10 +13352,8 @@ Maybe yo can do that using additional requests with POST or some other commands 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>I have deleted from <code>df_tweepy_extractions</code> the columns <code>entities_name</code>, <code>entities_screen_name</code>, <code>entities_type</code>, <code>mentions_name</code> and <code>mentions_screen_name</code> because we are going to use only the ids, so we can drop them by now.</li>
-</ul>
-
+<p><a id='clean_tidiness'></a></p>
+<h3 id="Tidiness">Tidiness<a class="anchor-link" href="#Tidiness">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13381,27 +13361,7 @@ Maybe yo can do that using additional requests with POST or some other commands 
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>In <code>df_tweepy_extractions_copy</code> The column <code>retweet_count_retweet</code> has no sense because it has the same value as <code>retweet_count</code>, so we have drop this column.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>I have mereged <code>df_tweepy_extractions_copy</code> into <code>df_twitter_archive_enhanced_copy</code> because both have information about the tweets in the @rate_dogs account.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>I have drop the columns <code>user_name</code> and <code>full_name</code> in <code>df_scrapped_replies_copy</code> because we are going to use the id.</li>
+<li>In <code>df_twitter_archive_enhanced_copy</code> I have changed the columns <code>doggo</code>, <code>floofer</code>, <code>pupper</code> and <code>puppo</code> by a sigle categorical column called <code>dog_type</code> with four values.</li>
 </ul>
 
 </div>
@@ -13430,6 +13390,26 @@ Maybe yo can do that using additional requests with POST or some other commands 
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>In <code>df_twitter_archive_enhanced_copy</code> I have dropped all the references to other user names (@XXXXX).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>I have deleted from <code>df_tweepy_extractions</code> the columns <code>entities_name</code>, <code>entities_screen_name</code>, <code>entities_type</code>, <code>mentions_name</code> and <code>mentions_screen_name</code> because we are going to use only the ids, so we can drop them by now.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>In <code>df_tweepy_extractions_copy</code> The column <code>retweet_count_retweet</code> has no sense because it has the same value as <code>retweet_count</code>, so we have drop this column.</li>
 </ul>
 
 </div>
@@ -13478,6 +13458,16 @@ Maybe yo can do that using additional requests with POST or some other commands 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>I have drop the columns <code>user_name</code> and <code>full_name</code> in <code>df_scrapped_replies_copy</code> because we are going to use the id.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='clean_tidiness1'></a></p>
 <h3 id="Tidiness">Tidiness<a class="anchor-link" href="#Tidiness">&#182;</a></h3>
 </div>
@@ -13488,7 +13478,27 @@ Maybe yo can do that using additional requests with POST or some other commands 
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>I have returned to tidiness issues because there is a problem that I prefered to arrange it at the end.
-I said that I preferred to gather all the information related with user mentions, replies to a tweet, retweets, quoted, etc  in <code>df_twitter_archive_enhanced_copy</code> and <code>df_scrapped_replies_copy</code> summarized in one sigle table. So we could have all the information regarded with interactions between users in a single table.</li>
+I have mereged <code>df_tweepy_extractions_copy</code> into <code>df_twitter_archive_enhanced_copy</code> because both have information about the tweets in the @rate_dogs account.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>I have mereged <code>df_image_predictions_copy</code> into <code>df_twitter_archive_enhanced_copy</code> because both have information about the tweets in the @rate_dogs account.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>I said that I preferred to gather all the information related with user mentions, replies to a tweet, retweets, quoted, etc  in <code>df_twitter_archive_enhanced_copy</code> and <code>df_scrapped_replies_copy</code> summarized in one sigle table. So we could have all the information regarded with interactions between users in a single table.</li>
 </ul>
 <p>What we have done is to create a new data frame <code>df_interactions</code> whit this information. This data frame has the colums:</p>
 <ul>
@@ -13550,7 +13560,18 @@ I said that I preferred to gather all the information related with user mentions
 <li><strong>replies_count (Int64):</strong> Number of replies to each tweet in @dog_rates account.</li>
 <li><strong>retweet_count (Float64):</strong> Number of times this Tweet has been retweeted.</li>
 <li><strong>favorite_count (Float64):</strong> Indicates approximately how many times this Tweet has been liked by Twitter users.</li>
-<li><strong>favorites_count_retweet (Float64):</strong> This field only surfaces when the Tweet is a retweet. Indicates approximately how many times the original Tweet has been liked by Twitter users.</li>
+<li><strong>favorites_count_retweet (Float64):</strong> This field only surfaces when the Tweet is a retweet. Indicates approximately how many times the original Tweet has been liked by Twitter users. </li>
+<li><strong>jpg_url (String):</strong> The url of the image of the tweet. It can be downloaded. </li>
+<li><strong>img_num (Int64):</strong> The image with the most confident prediction.</li>
+<li><strong>p1 (String):</strong> I is the algorithm's #1 prediction for the image in the tweet.</li>
+<li><strong>p1_conf (Float64):</strong> It is how confident the algorithm is in its #1 prediction.</li>
+<li><strong>p1_dog (Int64):</strong> It is whether or not the #1 prediction is a breed of dog.</li>
+<li><strong>p2 (String):</strong> It is the algorithm's second most likely prediction.</li>
+<li><strong>p2_conf (Float64):</strong> It is how confident the algorithm is in its #2 prediction.</li>
+<li><strong>p2_dog (Int64):</strong> It is whether or not the #2 prediction is a breed of dog.</li>
+<li>**p3 (String): It is the algorithm's third most likely prediction.</li>
+<li><strong>p3_conf (Float64):</strong> It is how confident the algorithm is in its #3 prediction.</li>
+<li><strong>p3_dog (Int64):</strong> It is whether or not the #3 prediction is a breed of dog.</li>
 </ul>
 <p><strong>df_scrapped_replies_copy</strong></p>
 <ul>
@@ -13566,21 +13587,6 @@ I said that I preferred to gather all the information related with user mentions
 <li><strong>timestamp (String):</strong> Date_time of the reply.</li>
 <li><strong>user_id (String):</strong> Id of the user who has replied.</li>
 </ul>
-<p><strong>df_image_predictions_copy</strong></p>
-<ul>
-<li><strong>tweet_id (String):</strong> The integer representation of the unique identifier for this Tweet. </li>
-<li><strong>jpg_url (String):</strong> The url of the image of the tweet. It can be downloaded. </li>
-<li><strong>img_num (Int64):</strong> The image with the most confident prediction.</li>
-<li><strong>p1 (String):</strong> I is the algorithm's #1 prediction for the image in the tweet.</li>
-<li><strong>p1_conf (Float64):</strong> It is how confident the algorithm is in its #1 prediction.</li>
-<li><strong>p1_dog (Int64):</strong> It is whether or not the #1 prediction is a breed of dog.</li>
-<li><strong>p2 (String):</strong> It is the algorithm's second most likely prediction.</li>
-<li><strong>p2_conf (Float64):</strong> It is how confident the algorithm is in its #2 prediction.</li>
-<li><strong>p2_dog (Int64):</strong> It is whether or not the #2 prediction is a breed of dog.</li>
-<li>**p3 (String): It is the algorithm's third most likely prediction.</li>
-<li><strong>p3_conf (Float64):</strong> It is how confident the algorithm is in its #3 prediction.</li>
-<li><strong>p3_dog (Int64):</strong> It is whether or not the #3 prediction is a breed of dog.</li>
-</ul>
 <p><strong>df_interactions</strong></p>
 <ul>
 <li><strong>tweet_id (String):</strong> Id of the tweet where the interaction between users is located.</li>
@@ -13592,11 +13598,9 @@ I said that I preferred to gather all the information related with user mentions
 <p><a id='tables'></a></p>
 <h3 id="Tables-Stored-In-The-Database:">Tables Stored In The Database:<a class="anchor-link" href="#Tables-Stored-In-The-Database:">&#182;</a></h3><p>This are the name of the tables stores int de DBLite database with the content indicated in the previous dataframes.</p>
 <ul>
-<li><p><strong>twitter_archive_enhanced</strong></p>
+<li><p><strong>twitter_master</strong></p>
 </li>
 <li><p><strong>scrapped_replies</strong></p>
-</li>
-<li><p><strong>image_predictions</strong></p>
 </li>
 <li><p><strong>interactions</strong></p>
 </li>
@@ -13604,6 +13608,19 @@ I said that I preferred to gather all the information related with user mentions
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
